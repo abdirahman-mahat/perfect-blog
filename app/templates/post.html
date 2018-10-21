@@ -59,6 +59,7 @@
               <span class="meta">Posted by
                 {{ post.author }}
                 on {{ post.date_posted.strftime('%B %d, %Y') }}</span>
+              
             </div>
           </div>
         </div>
@@ -75,7 +76,9 @@
         </div>
       </div>
     </article>
-
+    <div><a href="/comment/new/{{post.id}}"> <button class="btn btn-outline-info btn-sm">Comment</button> </a> </div>
+                <p><a href="/delete/{{ post.id}}">Delete Blog</a></p>
+    
     <hr>
 
     <!-- Footer -->

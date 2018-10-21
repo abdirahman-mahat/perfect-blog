@@ -90,3 +90,11 @@ def new_comment(id):
     comment = Comment.query.filter_by(post_id=id).all()
     return render_template('new_comment.html', title='New Post', comment=comment,comment_form=form, post ='New Post')
 
+@main.route('/delete/<int:id>',methods=['GET','POST'])
+@login_required
+def delete(id):
+    del_post = Blogpost.query.filter_by(id=id).first()
+    db.session.delete(del_post)
+    db.session.commit()
+
+    return redirect(url_for('main.index'))
