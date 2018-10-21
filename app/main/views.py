@@ -88,4 +88,5 @@ def new_comment(id):
         db.session.commit()
 
     comment = Comment.query.filter_by(post_id=id).all()
+    return render_template('new_comment.html', title='New Post', comment=comment,comment_form=form, post ='New Post')
 
