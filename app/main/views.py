@@ -98,3 +98,11 @@ def delete(id):
     db.session.commit()
 
     return redirect(url_for('main.index'))
+@main.route('/delet/<int:id>',methods=['GET','POST'])
+@login_required
+def delete_comment(id):
+    delete_comment = Comment.query.filter_by(id=id).first()
+    db.session.delete(delete_comment)
+    db.session.commit()
+
+    return redirect(url_for('main.index'))
