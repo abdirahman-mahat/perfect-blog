@@ -43,7 +43,16 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('main.add') }}">Add</a>
             </li>
+            <ul class="nav navbar-nav navbar-right">
+
+              {% if current_user.role_id==1%}
+      
+              <li><a href="/new_post">New Post</a></li>
+      
+              <li><a href="{{url_for('auth.register_admin')}}">Add Admin</a></li>
             <li class="nav-item">
+              {% endif %}
+              </ul>
               {% if current_user.is_authenticated %}
 
               <li><a style="color: gold;" href="{{url_for('main.profile',uname=current_user.username)}}" class="nav-link">{{current_user.username}}</a></li>
