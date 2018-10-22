@@ -67,3 +67,12 @@ class Blogpost(db.Model):
     content = db.Column(db.Text)
     post_id = db.relationship('Comment', backref = 'comments', lazy= "dynamic")
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+class Subscriber(db.Model):
+    __tablename__='subscribers'
+
+    id=db.Column(db.Integer,primary_key=True)
+    email = db.Column(db.String(255),unique=True,index=True)
+
+    def save_subscriber(self):
+        db.session.add(self)
+        db.session.commit()

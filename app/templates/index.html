@@ -43,6 +43,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('main.add') }}">Add</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('main.subscribe') }}">Subscribe</a>
+              </li>
             <ul class="nav navbar-nav navbar-right">
 
               {% if current_user.role_id==1%}
@@ -80,6 +83,8 @@
       </div>
     </header>
 
+    
+      
     <!-- Main Content -->
     <div class="container">
       <div class="row">

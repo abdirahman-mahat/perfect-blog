@@ -49,6 +49,9 @@ def update_pic(uname):
 @main.route('/about')
 def about():
     return render_template('about.html')
+@main.route('/subscribe')
+def subscribe():
+    return render_template('subscribe.html')
 
 @main.route('/post/<int:post_id>')
 def post(post_id):
@@ -68,6 +71,10 @@ def addpost():
     content = request.form['content']
 
     post = Blogpost(title=title, subtitle=subtitle, author=author, content=content, date_posted=datetime.now())
+    subscribers=Subscriber.query.all()
+
+    for subscriber in subscribers:
+        mail_message("New Blog Post","email/new_post",subscriber.email,post=new_post)
 
     db.session.add(post)
     db.session.commit()
@@ -88,6 +95,7 @@ def new_comment(id):
         db.session.commit()
 
     comment = Comment.query.filter_by(post_id=id).all()
+      
     return render_template('new_comment.html', title='New Post', comment=comment,comment_form=form, post ='New Post')
 
 @main.route('/delete/<int:id>',methods=['GET','POST'])
